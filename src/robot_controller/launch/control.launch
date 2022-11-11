@@ -1,0 +1,10 @@
+<launch>
+	<node pkg="teleop_twist_keyboard" name="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen">
+	</node>
+
+    <node pkg="joy" name="joy_node" type="joy_node" output="screen">
+	</node>
+
+    <node pkg="robot_controller" name="robot_controller_node" type="robot_controller_node" output="screen">
+	</node>
+</launch>
