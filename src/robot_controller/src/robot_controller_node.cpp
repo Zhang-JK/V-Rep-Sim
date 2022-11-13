@@ -55,6 +55,8 @@ void keyboardCB(const geometry_msgs::Twist::ConstPtr &msg)
     }
 }
 
+static float lastX = 0;
+static float lastO = 0;
 void joyConCB(const sensor_msgs::Joy::ConstPtr &msg)
 {
     if (msg.get()->buttons[0] == 1)
@@ -115,7 +117,17 @@ void joyConCB(const sensor_msgs::Joy::ConstPtr &msg)
         ang = abs(msg.get()->axes[0]) < 0.05 ? 0 : msg.get()->axes[0]*2;
         lin = abs(msg.get()->axes[4]) < 0.05 ? 0 : msg.get()->axes[4]*1.5;
     }
-    speed.angular.z = ang;
-    speed.linear.x = lin;
+    if ((ang != 0 || ang == 0 && lastO == 0) && (lin != 0|| lin == 0 && lastX == 0) && abs(ang - lastO) <= 0.1 && abs(lin - lastX) <= 0.2)
+        return ;
+    speed.angular.z = lastO;
+    speed.linear.x = lastX;
+    if (ang == 0 && lastO != 0)
+        lastO = speed.angular.z = 0;
+    if (ang != 0 && abs(ang - lastO) > 0.1)
+        lastO = speed.angular.z = ang;
+    if (lin == 0 && lastX != 0)
+        lastX = speed.linear.x = 0;
+    if (lin != 0 && abs(lin - lastX) > 0.1)
+        lastX = speed.linear.x = lin;
     speedPub.publish(speed);
 }
