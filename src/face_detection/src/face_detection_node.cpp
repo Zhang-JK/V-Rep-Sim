@@ -11,6 +11,10 @@
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
 
+#include <perspective_transform.hpp>
+
+using namespace cv;
+
 // OpenCV Window Name
 static const std::string OPENCV_WINDOW = "Image window";
 
@@ -20,26 +24,28 @@ static const std::string IMAGE_TOPIC = "/vrep/image";
 // Publisher
 ros::Publisher pub;
 
-cv::Ptr<cv::face::FaceRecognizer> model;
+Ptr<face::FaceRecognizer> model;
 std::vector<std::string> nameList({"Person 1", "Person 2", "Person 3", "Person 4", "Person 5"});
 
 void imageCallback(const sensor_msgs::ImageConstPtr &msg)
 {
   try
   {
-    cv::Mat img = cv_bridge::toCvShare(msg, "bgr8")->image;
-    cv::Mat imgR = cv::Mat::zeros(256, 256, CV_8UC3);
-    cv::resize(img, imgR, imgR.size());
-    cv::Mat imgRG = cv::Mat::zeros(256, 256, CV_8U);
-    cv::cvtColor(imgR, imgRG, CV_BGR2GRAY);
+    Mat raw = cv_bridge::toCvShare(msg, "bgr8")->image;
+    Point2f centerP;
+    Mat human = extractHuman(raw, centerP, false);
+    if (human.size().area() < 200*200) return;
     int label = -1;
     double confidence = 0;
-    model->predict(imgRG, label, confidence);
-    if (confidence > 20) label = -1;
-    if (label != -1) ROS_INFO_STREAM("Predicted label: " << label << " with confidence: " << confidence << " -- " << model->getThreshold());
-    cv::putText(img, label == -1 ? "Nothing" : nameList[label], cv::Point(10, 35), cv::FONT_HERSHEY_DUPLEX, 1.0, CV_RGB(118, 185, 0), 2);
-    cv::imshow(OPENCV_WINDOW, img);
-    cv::waitKey(30);
+    cvtColor(human, human, CV_BGR2GRAY);
+    model->predict(human, label, confidence);
+    if (confidence > 50)
+      label = -1;
+    if (label != -1)
+      ROS_INFO_STREAM("Find " << nameList[label] << ", at " << centerP);
+    putText(human, label == -1 ? "Nothing" : nameList[label], Point(10, 35), FONT_HERSHEY_DUPLEX, 1.0, CV_RGB(255,255,255), 2);
+    imshow(OPENCV_WINDOW, human);
+    waitKey(30);
   }
   catch (cv_bridge::Exception &e)
   {
@@ -59,12 +65,12 @@ int main(int argc, char **argv)
   privateNh.param<double>("face_threshold", threshold, 10.0);
   privateNh.param<std::string>("project_dir", path, "/home/laojk/Code/ELEC3210-Project/src/");
   privateNh.getParam("nameList", nameList);
-  cv::namedWindow(OPENCV_WINDOW);
-  model = cv::face::LBPHFaceRecognizer::create();
+  namedWindow(OPENCV_WINDOW);
+  model = face::LBPHFaceRecognizer::create();
   model->read(path + "face_detection/model/face_model.xml");
 
   image_transport::ImageTransport it(nh);
   image_transport::Subscriber sub = it.subscribe(IMAGE_TOPIC, 1, imageCallback);
   ros::spin();
-  cv::destroyWindow(OPENCV_WINDOW);
+  destroyWindow(OPENCV_WINDOW);
 }

@@ -3,6 +3,7 @@
 	</node> -->
 
     <node pkg="joy" name="joy_node" type="joy_node">
+		<param name="~dev_ff" value="/dev/input/event13" />
 	</node>
 
     <node pkg="robot_controller" name="robot_controller_node" type="robot_controller_node" output="screen">
