@@ -12,6 +12,7 @@
 #include <sensor_msgs/image_encodings.h>
 
 #include <perspective_transform.hpp>
+#include <sensor_msgs/JoyFeedbackArray.h>
 
 using namespace cv;
 
@@ -39,8 +40,18 @@ void imageCallback(const sensor_msgs::ImageConstPtr &msg)
     double confidence = 0;
     cvtColor(human, human, CV_BGR2GRAY);
     model->predict(human, label, confidence);
+
+    static sensor_msgs::JoyFeedbackArray feedback;
+    feedback.array = std::vector<sensor_msgs::JoyFeedback>(1);
+    feedback.array[0].id=0;
+    feedback.array[0].type=1;
+    feedback.array[0].intensity=0;
     if (confidence > 50)
       label = -1;
+    else 
+      feedback.array[0].intensity = (50 - confidence) / 50.0f;
+    
+    pub.publish(feedback);
     if (label != -1)
       ROS_INFO_STREAM("Find " << nameList[label] << ", at " << centerP);
     putText(human, label == -1 ? "Nothing" : nameList[label], Point(10, 35), FONT_HERSHEY_DUPLEX, 1.0, CV_RGB(255,255,255), 2);
@@ -68,6 +79,7 @@ int main(int argc, char **argv)
   namedWindow(OPENCV_WINDOW);
   model = face::LBPHFaceRecognizer::create();
   model->read(path + "face_detection/model/face_model.xml");
+  pub = nh.advertise<sensor_msgs::JoyFeedbackArray>("/joy/set_feedback", 1);
 
   image_transport::ImageTransport it(nh);
   image_transport::Subscriber sub = it.subscribe(IMAGE_TOPIC, 1, imageCallback);
