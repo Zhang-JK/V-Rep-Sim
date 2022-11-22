@@ -8,6 +8,10 @@
 2. There are some modification to the ```env.ttt```, these are necessary for the project to run normally
    - Rename ```ROSInterface``` to ```ROS``` in the script of the bot
    - Changed the ```endPos``` in the script of the moving ball's path
+3. Install the following ros package
+   - joy
+   - teleop_twist_keyboard
+   - gmapping
 ## Tasks and method
 ### Task 1, Bulid a 2D map
 #### Using hector_mapping
