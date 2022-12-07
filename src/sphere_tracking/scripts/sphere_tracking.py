@@ -18,6 +18,7 @@ tp = 0.02
 ti = 0.0000
 td = 0.0002
 
+max_acce = 0.045
 sphere_speed = 0.2
 
 rotationIntegral = 0
@@ -101,7 +102,7 @@ def imageCallback(image):
     rotateError = x + w/2 - 256
     transitionError = w - 270
     rotationSpeed, transitionSpeed = pidPub(rotateError, transitionError)
-    transitionSpeed = limitAcce(transitionSpeed, 0.045)
+    transitionSpeed = limitAcce(transitionSpeed, max_acce)
     cv2.putText(display, 'Error:', (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
     cv2.putText(display, f'R: {rotateError}, T:{transitionError}', (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 4)
     cv2.putText(display, 'Speed:', (10, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
@@ -111,7 +112,7 @@ def imageCallback(image):
     speed = Twist()
     speed.linear.x = -transitionSpeed
     speed.angular.z = rotationSpeed
-    speedPub.publish(speed)    
+    speedPub.publish(speed)  
     
     if (debug):
         rospy.loginfo(f'rotateError: {rotateError}, transitionError: {transitionError}')
@@ -125,6 +126,16 @@ def imageCallback(image):
 
 if __name__ == '__main__':
     rospy.init_node('sphere_tracking')
+
+    rp = rospy.get_param('~rota_p', rp)
+    ri = rospy.get_param('~rota_i', ri)
+    rd = rospy.get_param('~rota_d', rd)
+    tp = rospy.get_param('~tran_p', tp)
+    ti = rospy.get_param('~tran_i', ti)
+    td = rospy.get_param('~tran_d', td)
+    max_acce = rospy.get_param('~max_acce', max_acce)
+    sphere_speed = rospy.get_param('~sphere_speed', sphere_speed)
+
     bridge = CvBridge()
     rospy.Subscriber("/auto_tracking", Bool, triggerCallback)
     rospy.Subscriber('/vrep/image', Image, imageCallback)
