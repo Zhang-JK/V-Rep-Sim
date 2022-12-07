@@ -1,6 +1,4 @@
 <launch>
-    <include file="$(find robot_controller)/launch/control.launch" />
-
     <node pkg="tf" type="static_transform_publisher" name="t2baselink" args="0 0 0 1.57079633 0 0 base_link_t base_link 100"/>
     <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_t2base_link" args="0 0 0 0 0 90 base_link_t base_link 100"/> -->
 
@@ -55,12 +53,5 @@
 
     <node pkg="rviz" type="rviz" name="rviz" output="screen" args="-d $(find robot_map)/rviz/map.rviz">
         <param name="use_sim_time" value="true" />
-    </node>
-
-    <arg name="nameList" default="[Barack Obama, Allen Winston, Avril Lavigne, Leslie Cheung, Orlando Bloom]"/>
-    <node pkg="face_detection" type="face_detection_node" name="face_detection_node" output="screen">
-        <param name="face_threshold" type="double" value="0" />
-        <param name="project_dir" value="/home/laojk/Code/ELEC3210-Project/src/" />
-        <rosparam param="nameList" subst_value="True">$(arg nameList)</rosparam>
     </node>
 </launch> 

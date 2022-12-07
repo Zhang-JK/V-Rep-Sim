@@ -1,0 +1,23 @@
+<launch>
+    <!-- Controller, keyboard and joy -->
+    <include file="$(find robot_controller)/launch/control.launch" />
+
+    <!-- Mapping, now using hector mapping -->
+    <include file="$(find robot_map)/launch/map.launch"/>
+    <!-- Mapping, using gmapping, not good due to bad odomtry -->
+    <!-- <include file="$(find robot_nav)/launch/nav.launch"/> -->
+
+    <!-- Face detection -->
+    <arg name="nameList" default="[Barack Obama, Allen Winston, Avril Lavigne, Leslie Cheung, Orlando Bloom]"/>
+    <node pkg="face_detection" type="face_detection_node" name="face_detection_node" output="screen">
+        <param name="face_threshold" type="double" value="0" />
+        <param name="project_dir" value="/home/laojk/Code/ELEC3210-Project/src/" />
+        <rosparam param="nameList" subst_value="True">$(arg nameList)</rosparam>
+    </node>
+
+    <!-- Robot Localization -->
+    <node pkg="robot_position" type="robot_position.py" name="robot_position" output="screen">
+    </node>
+
+    <!-- Sphere Tracking -->
+</launch> 
