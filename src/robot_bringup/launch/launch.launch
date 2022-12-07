@@ -20,4 +20,12 @@
     </node>
 
     <!-- Sphere Tracking -->
+    <node pkg="sphere_tracking" type="sphere_tracking.py" name="sphere_tracking" output="screen">
+        <param name="tran_p" type="double" value="0" />
+        <param name="tran_i" type="double" value="0" />
+        <param name="tran_d" type="double" value="0" />
+        <param name="rota_p" type="double" value="0" />
+        <param name="rota_i" type="double" value="0" />
+        <param name="rota_d" type="double" value="0" />
+    </node>
 </launch> 

@@ -21,7 +21,7 @@
 using namespace cv;
 
 // OpenCV Window Name
-static const std::string OPENCV_WINDOW = "Image window";
+static const std::string OPENCV_WINDOW = "Face Detection";
 
 // Topics
 static const std::string IMAGE_TOPIC = "/vrep/image";
