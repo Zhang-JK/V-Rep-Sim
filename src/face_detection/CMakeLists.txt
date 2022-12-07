@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   utils
   image_transport
+  visualization_msgs
 )
 
 find_package(OpenCV 4 REQUIRED)
