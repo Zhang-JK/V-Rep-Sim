@@ -40,7 +40,7 @@ if __name__ == '__main__':
             if (rospy.get_time() - lastUpdate) > 2:
                 room = 'X'
             display = img.copy()
-            cv2.putText(display, room, (70, 210), cv2.FONT_HERSHEY_SIMPLEX, 7, (0,0,0), 5)
+            cv2.putText(display, room, (60, 210), cv2.FONT_HERSHEY_SIMPLEX, 7, (0,0,0), 5)
             cv2.waitKey(10)
             cv2.imshow(WINDOW_NAME, display)
             rate.sleep()

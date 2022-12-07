@@ -3,7 +3,6 @@ project(robot_controller)
 
 find_package(catkin REQUIRED COMPONENTS
   joy
-  robot_msg
   roscpp
   rospy
   teleop_twist_keyboard
@@ -15,7 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES robot_controller
-#  CATKIN_DEPENDS joy robot_msg roscpp rospy teleop_twist_keyboard std_msgs geometry_msgs sensor_msgs
+#  CATKIN_DEPENDS joy roscpp rospy teleop_twist_keyboard std_msgs geometry_msgs sensor_msgs
 #  DEPENDS system_lib
 )
 

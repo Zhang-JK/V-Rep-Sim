@@ -5,7 +5,6 @@ find_package(catkin REQUIRED COMPONENTS
   gmapping
   nav_msgs
   robot_controller
-  robot_msg
   roscpp
   sensor_msgs
   std_msgs
@@ -14,7 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES robot_nav
-#  CATKIN_DEPENDS gmapping nav_msgs robot_controller robot_msg roscpp sensor_msgs std_msgs
+#  CATKIN_DEPENDS gmapping nav_msgs robot_controller roscpp sensor_msgs std_msgs
 #  DEPENDS system_lib
 )
 

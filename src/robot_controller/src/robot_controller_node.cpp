@@ -11,6 +11,7 @@ enum
 bool useLaser = true;
 bool useCamera = true;
 bool useTri = false;
+bool tracking = false;
 
 void keyboardCB(const geometry_msgs::Twist::ConstPtr &msg);
 void joyConCB(const sensor_msgs::Joy::ConstPtr &msg);
@@ -18,6 +19,7 @@ void joyConCB(const sensor_msgs::Joy::ConstPtr &msg);
 ros::Publisher speedPub;
 ros::Publisher laserPub;
 ros::Publisher cameraPub;
+ros::Publisher trackPub;
 
 int main(int argc, char **argv)
 {
@@ -28,6 +30,7 @@ int main(int argc, char **argv)
     speedPub = n.advertise<geometry_msgs::Twist>("/vrep/cmd_vel", 20);
     laserPub = n.advertise<std_msgs::Bool>("/vrep/laser_switch", 20);
     cameraPub = n.advertise<std_msgs::Bool>("/vrep/camera_switch", 20);
+    trackPub = n.advertise<std_msgs::Bool>("/auto_tracking", 20);
 
     ros::Subscriber keySub = n.subscribe("/cmd_vel", 20, keyboardCB);
     ros::Subscriber joySub = n.subscribe("/joy", 20, joyConCB);
@@ -59,6 +62,23 @@ static float lastX = 0;
 static float lastO = 0;
 void joyConCB(const sensor_msgs::Joy::ConstPtr &msg)
 {
+    // Y
+    if (mode == JOYCON && msg.get()->buttons[4] == 1)
+    {
+        tracking = !tracking;
+        if (tracking) ROS_INFO_STREAM("Switch auto tracking");
+        else ROS_INFO_STREAM("Switch to Joy Control");
+        static std_msgs::Bool track;
+        track.data = tracking;
+        trackPub.publish(track);
+    }
+
+    if (tracking) 
+    {
+        ROS_INFO_STREAM("AUTO TRACKING, PRESS Y TO STOP");
+        return ;
+    }
+
     if (msg.get()->buttons[0] == 1)
     {
         if (mode == JOYCON)
@@ -79,6 +99,7 @@ void joyConCB(const sensor_msgs::Joy::ConstPtr &msg)
         return ;
     }
 
+    // B
     if (msg.get()->buttons[1] == 1)
     {
         useCamera = !useCamera;
@@ -89,7 +110,8 @@ void joyConCB(const sensor_msgs::Joy::ConstPtr &msg)
         else ROS_INFO_STREAM("Switch off the Camera");
     }
 
-    if (msg.get()->buttons[2] == 1)
+    // X
+    if (msg.get()->buttons[3] == 1)
     {
         useLaser = !useLaser;
         static std_msgs::Bool laser;
@@ -99,12 +121,13 @@ void joyConCB(const sensor_msgs::Joy::ConstPtr &msg)
         else ROS_INFO_STREAM("Switch off the Laser");
     }
 
-    if (msg.get()->buttons[3] == 1)
-    {
-        useTri = !useTri;
-        if (useTri) ROS_INFO_STREAM("Switch to Trigger Control");
-        else ROS_INFO_STREAM("Switch to Joy Control");
-    }
+    // useless, just for fun
+    // if (msg.get()->buttons[3] == 1)
+    // {
+    //     useTri = !useTri;
+    //     if (useTri) ROS_INFO_STREAM("Switch to Trigger Control");
+    //     else ROS_INFO_STREAM("Switch to Joy Control");
+    // }
 
     static geometry_msgs::Twist speed;
     float ang = 0;
