@@ -34,7 +34,7 @@ Mat extractHuman(Mat image, Point2f& centerP, bool show)
     Mat clone = image.clone();
     cvtColor(image, image, CV_BGR2GRAY);
     GaussianBlur(image, image, Size(3, 3), 0);
-    Canny(image, image, 100, 200);
+    Canny(image, image, 50, 250);
     Mat kernal = getStructuringElement(MORPH_RECT, Size(1, 1));
     dilate(image, image, Mat(), Point(-1, -1), 2);
     if (show)
@@ -43,13 +43,23 @@ Mat extractHuman(Mat image, Point2f& centerP, bool show)
     findContours(image, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
     RotatedRect rect;
+    int maxArea = 0;
     Point2f poi[4];
     for (int i = 0; i < contours.size(); i++)
     {
         approxPolyDP(contours[i], contours[i], 10, true);
-        if (contourArea(contours[i]) > 120 * 120)
+        if (contourArea(contours[i]) > 80 * 80)
         {
-            rect = minAreaRect(contours[i]);
+            RotatedRect temp = minAreaRect(contours[i]);
+            if (show)
+                ROS_INFO_STREAM("ratio: " << temp.size.width / temp.size.height);
+            if (temp.size.width / temp.size.height > 2.3 || temp.size.width / temp.size.height < 0.8)
+                continue;
+            if (contourArea(contours[i]) > maxArea)
+                maxArea = contourArea(contours[i]);
+            else
+                continue;
+            rect = temp;
             rect.points(poi);
             for (int j = 0; j < 4; j++)
                 line(showImg, poi[j], poi[(j + 1) % 4], Scalar(255), 2);

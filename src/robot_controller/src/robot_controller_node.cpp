@@ -45,8 +45,8 @@ void keyboardCB(const geometry_msgs::Twist::ConstPtr &msg)
     if (mode == KEYBOARD)
     {
         static geometry_msgs::Twist speed;
-        speed.angular = msg.get()->angular;
-        speed.linear = msg.get()->linear;
+        speed.angular.z = msg.get()->angular.z*0.5;
+        speed.linear.x = msg.get()->linear.x*0.5;
         speedPub.publish(speed);
     }
     else
@@ -114,8 +114,8 @@ void joyConCB(const sensor_msgs::Joy::ConstPtr &msg)
         lin = (msg.get()->axes[2] - msg.get()->axes[5]) * 0.7;
     }
     else {
-        ang = abs(msg.get()->axes[0]) < 0.05 ? 0 : msg.get()->axes[0]*2;
-        lin = abs(msg.get()->axes[4]) < 0.05 ? 0 : msg.get()->axes[4]*1.5;
+        ang = abs(msg.get()->axes[0]) < 0.05 ? 0 : msg.get()->axes[0];
+        lin = abs(msg.get()->axes[3]) < 0.05 ? 0 : msg.get()->axes[3];
     }
     if ((ang != 0 || ang == 0 && lastO == 0) && (lin != 0|| lin == 0 && lastX == 0) && abs(ang - lastO) <= 0.1 && abs(lin - lastX) <= 0.2)
         return ;
