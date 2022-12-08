@@ -57,7 +57,7 @@ void imageCallback(const sensor_msgs::ImageConstPtr &msg)
 		{
 			cvtColor(human, human, CV_BGR2GRAY);
 			model->predict(human, label, confidence);
-			if (confidence > 47)
+			if (confidence > 45)
 				label = -1;
 		}
 		if (label != -1) 
@@ -80,11 +80,14 @@ void imageCallback(const sensor_msgs::ImageConstPtr &msg)
 				ROS_INFO_STREAM("Find " << nameList[label] << ", at " << laserRes[tranAng] << " in laser_link with confidence: " << confidence);
 			}
 			
-			feedback.array[0].intensity = (47 - confidence) / 47.0f;
-			pub.publish(feedback);
+			feedback.array[0].intensity = (45 - confidence) / 25.0f;
+			if (feedback.array[0].intensity > 1) feedback.array[0].intensity = 1;
 		}
-		else 
+		else {
 			imshow(OPENCV_WINDOW, Mat(Size(256, 256), CV_8UC3, Scalar(256, 256, 256)));
+			feedback.array[0].intensity = 0;
+		}
+		pub.publish(feedback);
 		waitKey(5);
 	}
 	catch (cv_bridge::Exception &e)

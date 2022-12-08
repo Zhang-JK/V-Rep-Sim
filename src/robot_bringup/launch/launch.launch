@@ -22,7 +22,7 @@
     <!-- Sphere Tracking -->
     <node pkg="sphere_tracking" type="sphere_tracking.py" name="sphere_tracking" output="screen">
         <param name="tran_p" type="double" value="0.02" />
-        <param name="tran_i" type="double" value="0.0001" />
+        <param name="tran_i" type="double" value="0" />
         <param name="tran_d" type="double" value="0.002" />
         <param name="rota_p" type="double" value="0.03" />
         <param name="rota_i" type="double" value="0.00008" />

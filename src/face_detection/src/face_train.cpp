@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     Mat trainData[31];
     for (int i = 0; i < 5; i++)
     {
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < 4; j++)
         {
             trainData[i*6+j] = Mat::zeros(256, 256, CV_8UC3);
             resize(imread(path + "face_detection/images/p" + std::to_string(i + 1) + "_" + std::to_string(j + 1) + ".png", IMREAD_GRAYSCALE), trainData[i*6+j], trainData[i*6+j].size());
