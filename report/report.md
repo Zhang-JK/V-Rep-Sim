@@ -1,6 +1,7 @@
 
 # ELEC3210 Project Report
 #### Dec 8, 2022
+#### A demo video is available [here](https://youtu.be/kpoI3TCokHw).  
 ### Jiekai ZHANG jzhanger@connect.ust.hk
 ### Yutian ZHANG yzhangkq@connect.ust.hk
 
@@ -14,7 +15,7 @@ The project is to control the Pioneer3-DX robot in V-Rep using ROS. The robot is
 - Follow the yellow sphere in the environment
 - A bring-up of the robot by launch file  
 
-All the tasks will be descriped in detail in the [implementation section](#3-implementation). 
+All the tasks will be descriped in detail in the [implementation section](#3-implementation).   
 
 ### 1.2 Work Division
 The following table shows the work division of the project.
