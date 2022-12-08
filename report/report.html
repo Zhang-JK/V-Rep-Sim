@@ -1,0 +1,556 @@
+<!DOCTYPE html><html><head>
+      <title>report</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/laojk/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.6.5/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <div><h1 class="mume-header" id="elec3210-project-report">ELEC3210 Project Report</h1>
+
+<h4 class="mume-header" id="dec-8-2022">Dec 8, 2022</h4>
+
+<h3 class="mume-header" id="jiekai-zhang-jzhangerconnectusthk">Jiekai ZHANG <a href="mailto:jzhanger@connect.ust.hk">jzhanger@connect.ust.hk</a></h3>
+
+<h3 class="mume-header" id="yutian-zhang-yzhangkqconnectusthk">Yutian ZHANG <a href="mailto:yzhangkq@connect.ust.hk">yzhangkq@connect.ust.hk</a></h3>
+
+<h2 class="mume-header" id="1-introduction">1. Introduction</h2>
+
+<h3 class="mume-header" id="11-overview">1.1 Overview</h3>
+
+<p>The project is to control the Pioneer3-DX robot in V-Rep using ROS. The robot is equipped with a camera, a laser scanner. The tasks are as follows:</p>
+<ul>
+<li>Control the Pioneer3-DX robot in V-Rep using keyboard and joy-con</li>
+<li>Bulid a 2D map of the indoor environment</li>
+<li>Detect, recognize and locate the images on the wall</li>
+<li>Localization of the robot in the map</li>
+<li>Follow the yellow sphere in the environment</li>
+<li>A bring-up of the robot by launch file</li>
+</ul>
+<p>All the tasks will be descriped in detail in the <a href="#3-implementation">implementation section</a>.</p>
+<h3 class="mume-header" id="12-work-division">1.2 Work Division</h3>
+
+<p>The following table shows the work division of the project.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Person</th>
+<th>Package</th>
+<th>Node</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control the robot</td>
+<td>Jiekai ZHANG</td>
+<td>robot_controller</td>
+<td>robot_controller_node</td>
+</tr>
+<tr>
+<td>Bulid map</td>
+<td>Jiekai ZHANG</td>
+<td>robot_map (robot_nav)</td>
+<td>hector_mapping</td>
+</tr>
+<tr>
+<td>Face Recognition</td>
+<td>Jiekai ZHANG</td>
+<td>face_detection, utils</td>
+<td>face_detection_node, face_train</td>
+</tr>
+<tr>
+<td>Localization</td>
+<td>Yutian ZHANG</td>
+<td>robot_position</td>
+<td>robot_position</td>
+</tr>
+<tr>
+<td>Follow the sphere</td>
+<td>Yutian ZHANG</td>
+<td>sphere_tracking</td>
+<td>sphere_tracking</td>
+</tr>
+<tr>
+<td>All-in-one launch</td>
+<td>Jiekai ZHANG</td>
+<td>robot_bringup</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="2-environment-setup">2. Environment Setup</h2>
+
+<h3 class="mume-header" id="21-software">2.1 Software</h3>
+
+<p>The following list shows the software version used in the project.</p>
+<ul>
+<li>Ubuntu 20.04 (Kernal Version 5.15.0-56-generic)</li>
+<li>ROS Noetic</li>
+<li>CoppeliaSim 4.4.0</li>
+<li>Python 3.8.10</li>
+<li>OpenCV 4.2.0</li>
+</ul>
+<h3 class="mume-header" id="22-ros-packages">2.2 Ros Packages</h3>
+
+<p>The following list shows the external ros packages used in the project. Here, I assume you have installed desktop version of ROS Noetic. (There are some necessary tools like <code>tf</code>, <code>rqt</code> and <code>rviz</code> in the desktop version).</p>
+<ul>
+<li><strong>joy</strong> (<code>sudo apt-get install ros-noetic-joy</code>)<br>
+this package can read the input from the joy-con and also send the force feedback (let it vibrate) to the joy-con.</li>
+<li><strong>teleop_twist_keyboard</strong> (<code>sudo apt-get install ros-noetic-teleop-twist-keyboard</code>)<br>
+this package can control the robot using keyboard, but there&apos;s a lot problems, more detial on section <a href="#3-implementation">3.x</a>.</li>
+<li><strong>hector_mapping</strong> (<code>sudo apt-get install ros-noetic-hector-slam</code>)<br>
+this package can build a 2D map of the environment using <strong>only</strong> laser scan.</li>
+<li><strong>cv_bridge</strong> (<code>sudo apt-get install ros-noetic-cv-bridge</code>)<br>
+this package can convert the image from ROS to OpenCV and vice versa.</li>
+<li><strong>image_transport</strong> (<code>sudo apt-get install ros-noetic-image-transport</code>)<br>
+this package can publish and subscribe the image in ROS.</li>
+<li>If you want to try gmapping in <code>robot_nav</code>, you need to install the following packages:
+<ul>
+<li><strong>gmapping</strong> (<code>sudo apt-get install ros-noetic-slam-gmapping</code>)<br>
+this package can build a 2D map of the environment using <strong>both</strong> laser scan and odometry.</li>
+<li><strong>robot_localization</strong> (<code>sudo apt-get install ros-noetic-robot-localization</code>)<br>
+this package can fuse the odometry and control command to get the pose of the robot.</li>
+</ul>
+</li>
+</ul>
+<h3 class="mume-header" id="23-simulation-setup">2.3 Simulation Setup</h3>
+
+<p>First, please make sure the plugin <code>ROS</code> is already installed in your CoppeliaSim. If not, please install it by following the instructions in the <a href="https://www.coppeliarobotics.com/helpFiles/en/ros1Tutorial.htm">ROS tutorial</a>.<br>
+Then, remember to add the following line to your <code>.bashrc</code> (or to other setup scripts if you are not using bash) file:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">&quot;/path/to/your/vrep:<span class="token environment constant">$PATH</span>&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">COPPELIASIM_ROOT_DIR</span><span class="token operator">=</span><span class="token string">&quot;/path/to/your/vrep&quot;</span>
+</pre><p>The last step is to modify the given <code>env.ttt</code> file since there are some errors. (The one used in the code is already modified)</p>
+<ul>
+<li>Rename <code>ROSInterface</code> to <code>ROS</code> in line 46 the script of the Pioneer3-DX robot</li>
+<li><strong>If your yellow sphere is not moving</strong>, please changed the <code>endPos</code> in the script of the moving ball&apos;s path, which is the third parameter of line 24 in the Path&apos;s script, the number should be about 1000. The reason is that if the distance is too long, the generated trajectory duration will exceeds its numerical limits. For more detial please refer to <a href="https://www.coppeliarobotics.com/helpFiles/en/regularApi/simRuckigStep.htm">this official doc</a>.</li>
+</ul>
+<h2 class="mume-header" id="3-implementation">3. Implementation</h2>
+
+<h3 class="mume-header" id="31-project-structure">3.1 Project Structure</h3>
+
+<h4 class="mume-header" id="the-node-and-topic-tree-is-as-follows">The node and topic tree is as follows:</h4>
+
+<p>You can refer to the table in section <a href="#12-work-division">1.2</a> for the package and node name.<br>
+(all the tf message is hidden in the graph)<br>
+<img src="./img/rosgraph.png" alt></p>
+<h4 class="mume-header" id="the-tf-tree-is-as-follows">The TF Tree is as follows:</h4>
+
+<p>Note that, first, there&apos;s no <code>odom</code> frame, the hector mapping node will publish the tf between <code>map</code> and <code>base_link_t</code>.<br>
+<strong>Second, there is a <code>base_link_t</code> frame before the <code>base_link</code>, which is the frame of the robot in the simulation and the <code>base_link</code> frame is not the same as the one in the simulation. If there&apos;s no <code>base_link_t</code> frame, the front of the slam pose is different from the front of the robot in the simulation.</strong> The tf relation of the two frame, which is rotating 90 degree in yaw direction, is published by a static node in <code>robot_map</code> package.<br>
+<img src="./img/frames.png" style="height:400px;"></p>
+<h3 class="mume-header" id="32-keyboard-and-joy-con-control-jiekai-zhang">3.2 Keyboard and Joy-con Control (Jiekai ZHANG)</h3>
+
+<p>This feature is finished in the <code>robot_controller</code> package.<br>
+For the keyboard control, the node <code>robot_controller_node</code> subscribes the <code>/cmd_vel</code> topic published by <code>teleop_twist_keyboard</code>. Then the node will scale the speed command and send it to the robot on <code>/vrep/cmd_vel</code>. This part is very simple, since the <code>teleop_twist_keyboard</code> node already did the job.<br>
+For the joy control, the node <code>robot_controller_node</code> subscribes the <code>/joy</code> topic published by <code>joy</code> node. Then the node will extract the value from each joy and convert it to the speed command. The speed command will be sent to the robot on <code>/vrep/cmd_vel</code>. Also, all the buttons are also being extracted to control the camera switch and laser switch. In addition, since the joystick is very sensitive, we need an additional detection that filters out very small movements. Below is the control logic of the XBox One joy-con.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left Sticker</td>
+<td>Angular speed of the robot</td>
+</tr>
+<tr>
+<td>Right Sticker</td>
+<td>Translational speed of the robot</td>
+</tr>
+<tr>
+<td>Button A</td>
+<td>Switch bewteen keyboard and joy-con</td>
+</tr>
+<tr>
+<td>Button B</td>
+<td>Switch on / off the laser</td>
+</tr>
+<tr>
+<td>Button X</td>
+<td>Switch on / off the camera</td>
+</tr>
+<tr>
+<td>Button Y</td>
+<td>Switch on / off the sphere tracking</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="33-build-map-jiekai-zhang">3.3 Build Map (Jiekai ZHANG)</h3>
+
+<p>This feature is finished in the <code>robot_map</code> package.<br>
+This part is all done by the <code>hector_mapping</code> node. The node subscribes the <code>/vrep/scan</code> topic and <code>/tf</code> topic. And it will publish the transform between <code>map</code> and <code>base_link_t</code> (The <code>base_link_t</code> frame is the frame of the robot in the simulation and the <code>base_link</code> frame is not the same as the one in the simulation.) and the map on <code>/map</code> topic.<br>
+The node is very simple to use since it only require a laser scan and a tf tree. But most of the time the robot cannot move very fast otherwise the node cannot get enough information to build the map. That&apos;s why I first tried to use <code>gmapping</code> to bulid the map but unfortunately the odometry is not accurate enough. I will talk about this in the next section.</p>
+<h3 class="mume-header" id="34-face-recognition-jiekai-zhang">3.4 Face Recognition (Jiekai ZHANG)</h3>
+
+<p>This feature is finished in the <code>face_recognition</code> package.<br>
+This task is divided into three parts: image extraction, face recognition and image localization. The flow below shows the whole process.<br>
+<img src="./img/flow.png" alt><br>
+First, the image extraction is to find the face image in the camera image and extract it. First, we convert the image in to gray scale, and apply the <a href="https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html">Canny edge detection algorithm</a> to find the edges. Then we use the <code>findContours</code> function to find the contours of the edges, all the contours all selected by the area and the aspect ratio. After we get the best contour <code>perspective_transform</code> is applied to transfrom the rectangle to a 256*256 square. Now, the image is ready to be sent to the face recognition model.<br>
+Second, the face recognition is to recognize the face in the image. The model is using <a href="https://docs.opencv.org/4.x/dd/d7c/classcv_1_1face_1_1EigenFaceRecognizer.html">EigenFaceRecognizer</a> in OpenCV. The model is trained by the images in the <code>face_detection/images</code> folder and the model is located in <code>face_detection/model</code> folder and the training node is <code>face_train</code>. The model will return the label of the image.<br>
+The last part is to localize the face in the map. We first calculate the angle between the image and the camera using the face&apos;s x position in the image. And after getting the angle, I just use this laser scan data to find the distance between the robot and the image. Once we get the angle and the distance, we can calculate the position of the image in the map. The node <code>face_recognition</code> will publish a text maker with distance with respect to the <code>laser_link</code> to rviz and it will be shown on the map.<br>
+And one interesting feature is once a face is detected, a joy-confeedback will be sent to the joy-con. And the joy-con will vibrate according to the confidence of the face, the higher the confidence is the stronger the vibration is.</p>
+<h3 class="mume-header" id="35-room-localization-yutian-zhang">3.5 Room Localization (Yutian ZHANG)</h3>
+
+<p>This feature is finished in the <code>robot_position</code> package.<br>
+This task is very easy. The position of the robot is given by the <code>hector_mapping</code> node. Although it is different from the absolute position given in the simulation, we just find the boundary by experiment. Below is out logic of judging the current room of the robot.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># Room D is only depend on the y position</span>
+<span class="token keyword keyword-if">if</span> pos<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>position<span class="token punctuation">.</span>y <span class="token operator">&gt;</span> BORDER_Y<span class="token punctuation">:</span>
+    room <span class="token operator">=</span> <span class="token string">&apos;D&apos;</span>
+<span class="token comment"># From A to B to C there are two boundaries from left to right</span>
+<span class="token keyword keyword-elif">elif</span> pos<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>position<span class="token punctuation">.</span>x <span class="token operator">&lt;</span> BORDER_XAB<span class="token punctuation">:</span>
+    room <span class="token operator">=</span> <span class="token string">&apos;A&apos;</span>
+<span class="token keyword keyword-elif">elif</span> pos<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>position<span class="token punctuation">.</span>x <span class="token operator">&lt;</span> BORDER_XBC<span class="token punctuation">:</span>
+    room <span class="token operator">=</span> <span class="token string">&apos;B&apos;</span>
+<span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+    room <span class="token operator">=</span> <span class="token string">&apos;C&apos;</span>
+</pre><h3 class="mume-header" id="36-sphere-tracking-yutian-zhang">3.6 Sphere Tracking (Yutian ZHANG)</h3>
+
+<p>This feature is finished in the <code>sphere_tracking</code> package.<br>
+This task is divided into two parts: sphere detection and sphere tracking.<br>
+First, the detection is to find the sphere in the camera image. We just apply a color filter to the image and find the contours of the sphere. And since there&apos;s no disruptions in the simulation environment, this filter will give us a perfect circle. Below is some important code:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># Convert the image to HSV</span>
+hsv_raw <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>raw<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2HSV<span class="token punctuation">)</span>
+<span class="token comment"># Define the lower and upper boundaries of the color in the HSV color space</span>
+lower <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">93</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">&quot;uint8&quot;</span><span class="token punctuation">)</span>
+upper <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">45</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">&quot;uint8&quot;</span><span class="token punctuation">)</span>
+<span class="token comment"># Find the colors within the specified boundaries</span>
+mask <span class="token operator">=</span> cv2<span class="token punctuation">.</span>inRange<span class="token punctuation">(</span>hsv_raw<span class="token punctuation">,</span> lower<span class="token punctuation">,</span> upper<span class="token punctuation">)</span>
+</pre><p>After getting the circle, we use a rectangle to fit the circle. And we use the center of the rectangle as the center of the sphere. By calculating the distance between the center of the sphere and the center of the image, we can get the  angular error of the sphere, and by calculating the width of the rectangle, we can get the translational error of the sphere. Both error will go through a PID controller to get the angular speed and the translational speed of the robot. In addition, there is a offset (or feedfroward) in the translational speed since the sphere is moving at a constant speed of 0.2m/s.<br>
+Another thing worth mentioning is that the we also add a acceleration limit to the translational speed, which means if the distance is too far, the robot will speed up slowly to prevent the robot from moving too fast. (If the robot speed up too fast there&apos;s high chance that the robot will not move in a stright line and then miss the sphere.)<br>
+The contorl flow of tracking is shown below:<br>
+<img src="./img/flow2.png" alt></p>
+<h3 class="mume-header" id="37-all-in-one-launch-jiekai-zhang">3.7 All-in-One Launch (Jiekai ZHANG)</h3>
+
+<p>This feature is finished in the <code>robot_bringup</code> package.<br>
+We just write a launch file to launch all the nodes we need. The launch file is located in <code>robot_bringup/launch/launch.launch</code>. One thing worth mentioning is that most of the important parameters are located in this launch file, for example the PID of tracking and face detection threshold.</p>
+<h2 class="mume-header" id="4-results-and-conclusion">4. Results and Conclusion</h2>
+
+<p>Most of the result is already shown in the <a href="https://youtu.be/kpoI3TCokHw">demo video</a>. Here I will just talk about some of the results that can be improved.</p>
+<h3 class="mume-header" id="41-mapping">4.1 Mapping</h3>
+
+<p>The following imge shows the map built by <code>hector_mapping</code>. Since we are moving very slowly (about 1m/s) the map is quite well.<br>
+<img src="./img/map.png" alt><br>
+But once we move faster, the map will be very bad, and sometime even cannot be built. This is the problem of <code>hector_mapping</code> since it is only using laser scan.<br>
+To solve this I tried to calculate the odometry of the robot by using the control data. And use <code>gmapping</code> and <code>robot_localization</code> to do the SLAM. But the result is not good the major reason is that the robot is not moved as we commanded. The real speed is proportional to the control speed but they are not the same. (See the code below, it is from the Pioneer3-DX&apos;s script)</p>
+<pre data-role="codeBlock" data-info="lua" class="language-lua"><span class="token comment">-- set velocity</span>
+<span class="token keyword keyword-function">function</span> <span class="token function">velocity_callback</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+    sim<span class="token punctuation">.</span><span class="token function">auxiliaryConsolePrint</span><span class="token punctuation">(</span>console_debug<span class="token punctuation">,</span><span class="token string">&apos;linear: &apos;</span> <span class="token operator">..</span> msg<span class="token punctuation">.</span>linear<span class="token punctuation">.</span>x<span class="token punctuation">)</span>
+    sim<span class="token punctuation">.</span><span class="token function">auxiliaryConsolePrint</span><span class="token punctuation">(</span>console_debug<span class="token punctuation">,</span><span class="token string">&apos; angular: &apos;</span> <span class="token operator">..</span> msg<span class="token punctuation">.</span>angular<span class="token punctuation">.</span>z <span class="token operator">..</span> <span class="token string">&apos;\n&apos;</span><span class="token punctuation">)</span>
+    <span class="token comment">-- The following two lines are only make the robot&apos;s </span>
+    <span class="token comment">-- speed proportional to the control speed, not the same</span>
+    vLeft <span class="token operator">=</span> <span class="token number">6</span><span class="token operator">*</span>msg<span class="token punctuation">.</span>linear<span class="token punctuation">.</span>x <span class="token operator">-</span> <span class="token number">0.6</span><span class="token operator">*</span>msg<span class="token punctuation">.</span>angular<span class="token punctuation">.</span>z
+    vRight <span class="token operator">=</span> <span class="token number">6</span><span class="token operator">*</span>msg<span class="token punctuation">.</span>linear<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token number">0.6</span><span class="token operator">*</span>msg<span class="token punctuation">.</span>angular<span class="token punctuation">.</span>z
+    sim<span class="token punctuation">.</span><span class="token function">setJointTargetVelocity</span><span class="token punctuation">(</span>motorLeft<span class="token punctuation">,</span>vLeft<span class="token punctuation">)</span>
+    sim<span class="token punctuation">.</span><span class="token function">setJointTargetVelocity</span><span class="token punctuation">(</span>motorRight<span class="token punctuation">,</span>vRight<span class="token punctuation">)</span>
+<span class="token keyword keyword-end">end</span>
+</pre><p>And another reason is that if we only input the odometry data to <code>robot_localization</code> the output pose is not accurate (even worse than directly integrate the Twist command).<br>
+Below is a example of bad mapping:<br>
+<img src="./img/bad.png" style="height:400px;"><br>
+The laser scan was too slow relative to the angular velocity, causing the map to drift. With no odometry data available, it is difficult for us to compensate for this error once it occurs.<br>
+So, in the future work, we can try to get a accurate odometry data and try to use <code>gmapping</code> to get a better data.</p>
+<h3 class="mume-header" id="42-face-recognition">4.2 Face Recognition</h3>
+
+<p>Below image shows the steps of face recognition.<br>
+<img src="./img/face.png" alt><br>
+As we mentioned before, the image extract is very complex, which contains many steps. And sometimes the result is not very good, for example, the chair is detected, although it is not detected as a face but it still cost a lot of time, and sometimes it only extract some part of the image.<br>
+To solve this, later, we can try to switch a face detection algorithm. I found one in OpenCV library which is <a href="https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html">Cascade Classifier</a> it can identify a face accurately and fast. (Note that it only identify a face, not recognize it.)</p>
+<h3 class="mume-header" id="43-sphere-tracking">4.3 Sphere Tracking</h3>
+
+<p>The following image is the result of sphere tracking.<br>
+<img src="./img/sphere.png" alt><br>
+The error R indicate the number of pixels between the center of the sphere and the center of the image. And the error T indicate the width of the rectangle minus 300. And the error R and T will go through a PID controller to get the angular speed and the translational speed which is also shown in the image. But this is just simple following.</p>
+<p><a href="https://drive.google.com/file/d/1ivm1pV4a1Geq1kKqgPonau2B9Q1nBhh1/view?usp=sharing">This video</a> shows the result of sphere tracking in a long distance. And you can see that although we are very far away from the sphere, the robot can still track it very well. Here I will discuss how we achieve this.<br>
+First is the PID for tracking. We use a PID controller to control the angular speed and the translational speed. And we also add a feedforward to the translational speed. The feedforward is the sphere&apos;s speed. After fine tuning the PID, the robot can track the sphere very well.<br>
+But, only PID is not enough, when the sphere is far away, the PID will output a gaint speed, which will make the robot move very fast. So first, we add a acceleration limit to the translational speed, which means the robot will pick up speed slowly and this will prevents skidding and drifting. But just doing this will also limit the deacceleration speed, which means the robot will crash into the sphere. So we apply a different limit for deacceleration and it is much lager than the acceleration.</p>
+<h3 class="mume-header" id="44-some-other-possible-future-work">4.4 Some Other Possible Future Work</h3>
+
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Use a better face detection algorithm like haar cascades.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Let the robot follow the wall to auto detect the environement.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Create a utility to help the user to set the parameters.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Follow the yellow Sphere in both directions (forward and backward).</li>
+</ul>
+<h2 class="mume-header" id="5-reference">5. Reference</h2>
+
+<p><a href="http://wiki.ros.org/ROS/Tutorials">ROS Tutorial</a><br>
+<a href="http://wiki.ros.org/tf/Tutorials">TF Tutorial</a><br>
+<a href="http://wiki.ros.org/navigation">ROS Navigation</a><br>
+<a href="http://wiki.ros.org/hector_mapping">Hector Mapping</a><br>
+<a href="http://wiki.ros.org/joy">Joy</a><br>
+<a href="https://www.coppeliarobotics.com/helpFiles/en/ros1Tutorial.htm">VREP ROS Tutorial</a><br>
+<a href="https://www.coppeliarobotics.com/helpFiles/en/regularApi/simRuckigStep.htm">simRuckigStep API</a><br>
+<a href="https://docs.opencv.org/3.4/da/d60/tutorial_face_main.html">Face detection in OpenCV</a><br>
+<a href="https://docs.opencv.org/3.4/da/d97/tutorial_threshold_inRange.html">Color filtering in OpenCV</a><br>
+<a href="https://www.generationrobots.com/media/Pioneer3DX-P3DX-RevA.pdf">Pioneer 3-DX Description</a></p>
+</div>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
