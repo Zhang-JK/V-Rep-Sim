@@ -50,7 +50,7 @@ void imageCallback(const sensor_msgs::ImageConstPtr &msg)
 	{
 		Mat raw = cv_bridge::toCvShare(msg, "bgr8")->image;
 		Point2f centerP;
-		Mat human = extractHuman(raw, centerP, false);
+		Mat human = extractHuman(raw, centerP, true);
 		int label = -1;
 		double confidence = 0;
 		if (human.size().area() > 80 * 80)
